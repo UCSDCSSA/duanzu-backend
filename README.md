@@ -43,4 +43,17 @@ Both of these commands will start server on `3002` port and in the browser or
 
 ## Testing
 
+Please look at the `src/test` folder and look at the `example.js` file to get a better idea of what
+an *Async* test could be like. And try to write your own!
+
 ## Contributing
+
+We have [eslint](https://github.com/eslint/eslint) setup so please do make sure that you have the
+proper styled files been pushed. Everytime before you push your code, please run
+
+```
+$ npm run linter
+```
+
+and fix all the error you see. In the mean time, please push to a separate branch other than
+master, and submit a pull request so that we can together review it.
