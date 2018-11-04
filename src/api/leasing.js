@@ -9,7 +9,7 @@ module.exports = {
         user_id, complex_id, apt_bedroom_amount, apt_bathroom_amount, callback, error
     ) {
       
-        // TODO: WUT IS THIS!!!!
+        // TODO: WUT DA FUC IS THIS!!!!
         if(Leasing.findOne({
             // find if exist
         }))
