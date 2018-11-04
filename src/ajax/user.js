@@ -29,7 +29,7 @@ module.exports = {
               if(Crypto.match(req.body.password,result[0]['password'])){
                 var session_id = ObjectId();
                 User.update({
-                  "_id":ObjectId("5ae61784896911a33b81d3bd")
+                  "_id":ObjectId("5ae61784896911a33b81d3bd") // TODO: ?????
                 }, {
                   $set: {
                     "session_id" : session_id
@@ -171,6 +171,8 @@ module.exports = {
             res.error(4, "No password");
         }
     },
+    
+    // TODO: REMOVE THIS!!!!!!
     "remove_all_users": function (req, res) {
         if (User.drop()){
             res.success("drop success");

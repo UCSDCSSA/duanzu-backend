@@ -1,3 +1,5 @@
+// TODO: Turn APIs into NO RES REQ function calls!
+
 const Mongo = require("keeling-js/lib/mongo");
 const ObjectId = require("mongodb").ObjectId;
 const Leasing = Mongo.db.collection("leasing");
@@ -6,6 +8,8 @@ module.exports = {
     "insert": function(
         user_id, complex_id, apt_bedroom_amount, apt_bathroom_amount, callback, error
     ) {
+      
+        // TODO: WUT IS THIS!!!!
         if(Leasing.findOne({
             // find if exist
         }))
