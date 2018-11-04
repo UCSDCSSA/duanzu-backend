@@ -1,7 +1,7 @@
 {
     "debug": true,
-    "name": "Keeling Js Default",
-    "port": 21023,
+    "name": "ucsdcssa-duanzu-backend",
+    "port": 3002,
     "session_secret": "keeling-session",
     "engine": "ejs",
     "default_page": "index",
