@@ -1,2 +1,2 @@
-mongo.json filter=git-crypt diff=git-crypt
+src/data/mongo.json filter=git-crypt diff=git-crypt
 *.key filter=git-crypt diff=git-crypt
