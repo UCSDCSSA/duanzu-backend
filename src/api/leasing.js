@@ -6,7 +6,6 @@ const Leasing = Mongo.db.collection('leasing')
 
 module.exports = {
   'insert': function (
-<<<<<<< HEAD
     userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
   ) {
     // TODO: WUT DA FUC IS THIS!!!!
@@ -23,32 +22,12 @@ module.exports = {
       }, function (err, res) {
         if (err) {
           error(new Error('Error adding new house ' + userId + ': ' + err))
-=======
-    user_id, complex_id, apt_bedroom_amount, apt_bathroom_amount, callback, error
-  ) {
-    // TODO: WUT DA FUC IS THIS!!!!
-    if (Leasing.findOne({ }, function () {})) {} else if (apt_bedroom_amount < 0 || apt_bathroom_amount < 0) {
-      error(new Error('room amount invalid'))
-    } else {
-      Leasing.insertOne({
-        'user_id': user_id,
-        'complex_id': complex_id,
-        'apt_bedroom_amount': apt_bedroom_amount,
-        'apt_bathroom_amount': apt_bathroom_amount
-      }, function (err, res) {
-        if (err) {
-          error(new Error('Error adding new house ' + user_id + ': ' + err))
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
         } else {
           callback(res['insertedId'])
         }
       })
     }
-<<<<<<< HEAD
   }
-=======
-  },
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
 
   /**
      * req.body.username,
@@ -99,10 +78,7 @@ module.exports = {
             });
         }
     }, */
-<<<<<<< HEAD
   /*
-=======
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
   'get_one': function (req, res) {
     var id = req.body['id']
     if (req.body['id']) {
@@ -124,11 +100,7 @@ module.exports = {
         if (err) {
           res.error(2, err)
         } else {
-<<<<<<< HEAD
-          if (result == 0) {
-=======
           if (result === 0) {
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
             res.error(3, 'Leasing not found')
           } else {
             res.success(result)
@@ -188,10 +160,7 @@ module.exports = {
      * req.body.id,
      * req.body.status
      */
-<<<<<<< HEAD
   /*
-=======
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
   'change_status_leasing': function (req, res) {
     Leasing.updateOne({
       '_id': req.body._id
@@ -213,9 +182,5 @@ module.exports = {
     } else {
       res.error(1, 'collection does not exist')
     }
-<<<<<<< HEAD
-} */
-=======
-  }
->>>>>>> 47574515eb3e28d2db261fc84564dda1fba7b0b4
+  } */
 }
