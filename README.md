@@ -5,7 +5,7 @@ This is a repo for UCSD CSSA Short Term Leasing Project Backend Platform, based 
 
 ## Setup
 
-After cloning this repo, `cd` into the repository and type
+After cloning this repo, `cd` into the repository's `src/` folder and type
 
 ```
 $ npm install
