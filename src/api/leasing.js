@@ -70,6 +70,10 @@ module.exports = {
             });
         }
     }, */
+<<<<<<< HEAD
+=======
+  /*
+>>>>>>> Delete merge markers
   'get_one': function (req, res) {
     var id = req.body['id']
     if (req.body['id']) {
@@ -151,6 +155,10 @@ module.exports = {
      * req.body.id,
      * req.body.status
      */
+<<<<<<< HEAD
+=======
+  /*
+>>>>>>> Delete merge markers
   'change_status_leasing': function (req, res) {
     Leasing.updateOne({
       '_id': req.body._id
@@ -172,5 +180,9 @@ module.exports = {
     } else {
       res.error(1, 'collection does not exist')
     }
+<<<<<<< HEAD
   }
+=======
+  } */
+>>>>>>> Delete merge markers
 }
