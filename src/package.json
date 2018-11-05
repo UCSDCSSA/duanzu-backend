@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "nodemon ./app.js",
         "server": "node ./app.js",
-        "linter": "./node_modules/.bin/eslint --fix ./**/*.js",
+        "linter": "./node_modules/.bin/eslint --fix ./",
         "start": "node node_modules/keeling-js/entry.js",
         "create-entry": "cp node_modules/keeling-js/entry.js ./app.js"
     },
