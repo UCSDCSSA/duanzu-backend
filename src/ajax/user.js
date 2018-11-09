@@ -1,17 +1,7 @@
 const Mongo = require('keeling-js/lib/mongo')
 const ObjectId = require('mongodb').ObjectId
 const Crypto = require('keeling-js/lib/crypto')
-const User = Mongo.db.collection('user')
-
-function isValidPassword (pwd) {
-  var re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-  return re.test(String(pwd))
-}
-
-function isValidEmail (email) {
-  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(String(email).toLowerCase())
-}
+const User = require("../api/user");
 
 module.exports = {
   /**
@@ -27,7 +17,7 @@ module.exports = {
       } else {
         if (Crypto.match(req.body.password, result[0]['password'])) {
           var session_id = ObjectId()
-          User.update({
+          User.updateOne({
             '_id': ObjectId('5ae61784896911a33b81d3bd') // TODO: ?????
           }, {
             $set: {
@@ -146,15 +136,6 @@ module.exports = {
       res.error(3, 'No email')
     } else if (!password) {
       res.error(4, 'No password')
-    }
-  },
-
-  // TODO: REMOVE THIS!!!!!!
-  'remove_all_users': function (req, res) {
-    if (User.drop()) {
-      res.success('drop success')
-    } else {
-      res.error(1, 'collection does not exist')
     }
   }
 }
