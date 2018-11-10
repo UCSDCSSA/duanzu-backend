@@ -9,7 +9,7 @@ function isValidPassword (pwd) {
 }
 
 function isValidEmail (email) {
-  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(String(email).toLowerCase())
 }
 
@@ -26,22 +26,22 @@ module.exports = {
         res.error(1, err)
       } else {
         if (Crypto.match(req.body.password, result[0]['password'])) {
-          var session_id = ObjectId()
+          var sessionId = ObjectId()
           User.update({
-            '_id': ObjectId('5ae61784896911a33b81d3bd') // TODO: ?????
+            '_id': result[0]['_id']
           }, {
             $set: {
-              'session_id': session_id
+              'session_id': sessionId
             }
           }, function (updateError, updateResult) {
             if (err) {
               res.error(1, updateError)
             } else {
-              res.success({ 'session_id': session_id })
+              res.success({ 'session_id': sessionId })
             }
           })
         } else {
-          res.error(102)
+          res.error(102, err)
         }
       }
     })
@@ -51,14 +51,14 @@ module.exports = {
     var newPassword = req.body['new_password']
     var confirmPassword = req.body['confirm_password']
     if (req.body['username'] && currentPassword && newPassword && confirmPassword) {
-      if (newPassword != confirmPassword) {
+      if (newPassword !== confirmPassword) {
         res.error(8, 'confirm password is not same as new password')
       } else {
         User.find({ 'username': req.body['username'] }).toArray(function (err, result) {
           if (err) {
             res.error(1, err)
           } else {
-            if (result.length == 0) {
+            if (result.length === 0) {
               res.error(5, 'User not found')
             } else {
               var user = result[0]
@@ -112,14 +112,14 @@ module.exports = {
           if (err) {
             res.error(1, err)
           } else {
-            if (result.length != 0) {
+            if (result.length !== 0) {
               res.error(7, 'Username has been used')
             } else {
               User.find({ 'email': email }).toArray(function (err, result) {
                 if (err) {
                   res.error(1, err)
                 } else {
-                  if (result.length != 0) {
+                  if (result.length !== 0) {
                     res.error(8, 'Email has been used')
                   } else {
                     User.insertOne({
@@ -147,14 +147,14 @@ module.exports = {
     } else if (!password) {
       res.error(4, 'No password')
     }
-  },
-
-  // TODO: REMOVE THIS!!!!!!
-  'remove_all_users': function (req, res) {
-    if (User.drop()) {
-      res.success('drop success')
-    } else {
-      res.error(1, 'collection does not exist')
-    }
   }
+
+  // // TODO: REMOVE THIS!!!!!!
+  // 'remove_all_users': function (req, res) {
+  //   if (User.drop()) {
+  //     res.success('drop success')
+  //   } else {
+  //     res.error(1, 'collection does not exist')
+  //   }
+  // }
 }
