@@ -9,8 +9,8 @@ module.exports = {
     userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
   ) {
     // TODO: WUT DA FUC IS THIS!!!!
-    if (Leasing.findOne({'user_id': userId, 'complex_id': complexId}, function () {})) {
-            // If find
+    if (Leasing.findOne({ 'user_id': userId, 'complex_id': complexId }, function () {})) {
+      // If find
     } else if (aptBedroomAmount < 0 || aptBathroomAmount < 0) {
       error(new Error('room amount invalid'))
     } else {
