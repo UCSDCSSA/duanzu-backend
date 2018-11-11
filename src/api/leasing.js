@@ -1,6 +1,7 @@
 // TODO: Turn APIs into NO RES REQ function calls!
 
 const Mongo = require('keeling-js/lib/mongo')
+<<<<<<< HEAD
 const ObjectId = require('./objectId')
 const Leasing = Mongo.db.collection('leasing')
 
@@ -68,8 +69,43 @@ module.exports = {
      * req.body.password
      */
 /*
+=======
+const ObjectId = require('mongodb').ObjectId
+const Leasing = Mongo.db.collection('leasing')
+
+module.exports = {
+  'insert': function (
+    userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
+  ) {
+    // TODO: WUT DA FUC IS THIS!!!!
+    if (Leasing.findOne({ 'user_id': userId, 'complex_id': complexId }, function () {})) {
+      // If find
+    } else if (aptBedroomAmount < 0 || aptBathroomAmount < 0) {
+      error(new Error('room amount invalid'))
+    } else {
+      Leasing.insertOne({
+        'user_id': userId,
+        'complex_id': complexId,
+        'apt_bedroom_amount': aptBedroomAmount,
+        'apt_bathroom_amount': aptBathroomAmount
+      }, function (err, res) {
+        if (err) {
+          error(new Error('Error adding new house ' + userId + ': ' + err))
+        } else {
+          callback(res['insertedId'])
+        }
+      })
+    }
+  }
+
+  /**
+     * req.body.username,
+     * req.body.password
+     */
+  /*
+>>>>>>> b42562a3c439ccb2e2f98aaa7830ea201db6f4c8
     "add_one": function (req, res) {
-        var user_id = req.body.user_id;
+        var userId = req.body.userId;
         var start_date = req.body.start_date;
         var end_date = req.body.end_date;
         var complex_id = req.body.complex_id;
@@ -88,7 +124,7 @@ module.exports = {
         }
         else{
             Leasing.insertOne({
-                "user_id": user_id,
+                "userId": userId,
                 "start_date": start_date,
                 "end_date": end_date,
                 "complex_id": complex_id,
@@ -112,7 +148,11 @@ module.exports = {
             });
         }
     }, */
+<<<<<<< HEAD
 /*
+=======
+  /*
+>>>>>>> b42562a3c439ccb2e2f98aaa7830ea201db6f4c8
   'get_one': function (req, res) {
     var id = req.body['id']
     if (req.body['id']) {
@@ -188,6 +228,7 @@ module.exports = {
           res.success(result)
         }
       })
+<<<<<<< HEAD
     }
   },
   /**
@@ -218,3 +259,35 @@ module.exports = {
     }
   }
 } */
+=======
+    }
+  },
+  /**
+     * req.body.id,
+     * req.body.status
+     */
+  /*
+  'change_status_leasing': function (req, res) {
+    Leasing.updateOne({
+      '_id': req.body._id
+    }, {
+      $set: {
+        'status': req.body.status
+      }
+    }, function (err) {
+      if (err) {
+        res.error(200)
+      } else {
+        res.success({})
+      }
+    })
+  },
+  'remove_all_leasing': function (req, res) {
+    if (Leasing.drop()) {
+      res.success('drop success')
+    } else {
+      res.error(1, 'collection does not exist')
+    }
+  } */
+}
+>>>>>>> b42562a3c439ccb2e2f98aaa7830ea201db6f4c8
