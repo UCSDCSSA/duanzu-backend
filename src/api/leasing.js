@@ -1,69 +1,73 @@
 // TODO: Turn APIs into NO RES REQ function calls!
 
 const Mongo = require('keeling-js/lib/mongo')
-const ObjectId = require('mongodb').ObjectId
+const ObjectId = require('./objectId')
 const Leasing = Mongo.db.collection('leasing')
 
 module.exports = {
-  insert(userId, callback, error) {
+  insert (userId, callback, error) {
     Leasing.insertOne({
-        'user_id': userId,
-        'status': 0
+      'user_id': ObjectId(userId),
+      'status': 0
     }, function (err, result) {
-        if (err) {
-          error(new Error('Error adding new house ' + req.body.userId + ': ' + err))
-        } else {
-          callback(result['insertedId'])
-        }
-      })
-  },
-
-  findByCriteria(criteria, callback, error) {
-      Leasing.find({
-          ...criteria,
-          "status": 1
-      }).toArray(function (err, result){
-        if(err) {
-            error(err);
-        } else {
-            callback(result);
-        }
-      })
-  },
-
-  getLeasing(_id, callback, error) {
-      Leasing.findOne({
-          "_id": _id
-      }).toArray(function (err, result)){
-          if(err) {
-              error(err);
-          } else {
-              callback(result[0])
-          }
+      if (err) {
+        error(new Error('Error adding new house ' + userId + ': ' + err))
+      } else {
+        callback(result['insertedId'])
       }
+    })
   },
 
-  updateOne(criteria, newCriteria, callback, error) {
-      Leasing.updateOne({}, {}, function(err, result){
-          else{
-
-          }
-      })
+  findByCriteria (criteria, callback, error) {
+    Leasing.find({
+      ...criteria,
+      'status': 1
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        callback(result)
+      }
+    })
   },
 
-  setavailable() {
+  getLeasing (leasingId, callback, error) {
+    Leasing.findOne({
+      '_id': ObjectId(leasingId)
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        callback(result[0])
+      }
+    })
+  },
+
+  updateOne (leasingId, criteria, callback, error) {
+    Leasing.updateOne({
+      '_id': ObjectId(leasingId)
+    }, criteria, (err, result) => {
+      if (err) {
+
+      } else {
+
+      }
+    })
+  },
+
+  setavailable () {
 
   },
 
-  setUnavailable() {
+  setUnavailable () {
 
   }
 }
-  /**
+/**
      * req.body.username,
      * req.body.password
      */
-  /*
+/*
     "add_one": function (req, res) {
         var user_id = req.body.user_id;
         var start_date = req.body.start_date;
@@ -108,15 +112,7 @@ module.exports = {
             });
         }
     }, */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
-
->>>>>>> several function in api/leasing #2
-  /*
->>>>>>> Delete merge markers
+/*
   'get_one': function (req, res) {
     var id = req.body['id']
     if (req.body['id']) {
@@ -198,10 +194,7 @@ module.exports = {
      * req.body.id,
      * req.body.status
      */
-<<<<<<< HEAD
-=======
-  /*
->>>>>>> Delete merge markers
+/*
   'change_status_leasing': function (req, res) {
     Leasing.updateOne({
       '_id': req.body._id
@@ -223,12 +216,5 @@ module.exports = {
     } else {
       res.error(1, 'collection does not exist')
     }
-<<<<<<< HEAD
   }
-=======
-  } */
-<<<<<<< HEAD
->>>>>>> Delete merge markers
-}
-=======
->>>>>>> several function in api/leasing #2
+} */

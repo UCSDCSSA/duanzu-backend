@@ -1,9 +1,22 @@
 const LeasingAPI = require('../api/leasing')
+const UserAPI = require('../api/user')
 
 module.exports = {
+    'insert': (req, res) => {
+      UserAPI.getUserBySessionId(req.cookies.session_id, (user) => {
+          LeasingAPI.insert(user._id, (leasingId) => {
+              res.success(leasingId);
+          }, (err) => {
+              console.error(err);
+              res.error(1, "insert error");
+          })
+      }, (err) => {
+          console.error(err);
+          res.error(2, "get user error");
+      })
+    },
 
-    'search': (res, req) => {
-
+    'search': (req, res) => {
       var criteria = {}
 
       if(req.body.complexId) {
@@ -41,9 +54,10 @@ module.exports = {
       LeasingAPI.findByCriteria(criteria, (leasings) => {
         res.success(leasings);
       }, (err) => {
-        res.error(1, "not found");
+        console.error(err);
+        res.error(3, "not found");
       })
-    }
+  },
 
     /**
      * ajax/leasing?action=update
