@@ -5,30 +5,60 @@ const ObjectId = require('mongodb').ObjectId
 const Leasing = Mongo.db.collection('leasing')
 
 module.exports = {
-  'insert': function (
-    userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
-  ) {
-    // TODO: WUT DA FUC IS THIS!!!!
-    if (Leasing.findOne({ 'user_id': userId, 'complex_id': complexId }, function () {})) {
-      // If find
-    } else if (aptBedroomAmount < 0 || aptBathroomAmount < 0) {
-      error(new Error('room amount invalid'))
-    } else {
-      Leasing.insertOne({
+  insert(userId, callback, error) {
+    Leasing.insertOne({
         'user_id': userId,
-        'complex_id': complexId,
-        'apt_bedroom_amount': aptBedroomAmount,
-        'apt_bathroom_amount': aptBathroomAmount
-      }, function (err, res) {
+        'status': 0
+    }, function (err, result) {
         if (err) {
-          error(new Error('Error adding new house ' + userId + ': ' + err))
+          error(new Error('Error adding new house ' + req.body.userId + ': ' + err))
         } else {
-          callback(res['insertedId'])
+          callback(result['insertedId'])
         }
       })
-    }
   },
 
+  findByCriteria(criteria, callback, error) {
+      Leasing.find({
+          ...criteria,
+          "status": 1
+      }).toArray(function (err, result){
+        if(err) {
+            error(err);
+        } else {
+            callback(result);
+        }
+      })
+  },
+
+  getLeasing(_id, callback, error) {
+      Leasing.findOne({
+          "_id": _id
+      }).toArray(function (err, result)){
+          if(err) {
+              error(err);
+          } else {
+              callback(result[0])
+          }
+      }
+  },
+
+  updateOne(criteria, newCriteria, callback, error) {
+      Leasing.updateOne({}, {}, function(err, result){
+          else{
+
+          }
+      })
+  },
+
+  setavailable() {
+
+  },
+
+  setUnavailable() {
+
+  }
+}
   /**
      * req.body.username,
      * req.body.password
@@ -79,7 +109,12 @@ module.exports = {
         }
     }, */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+
+>>>>>>> several function in api/leasing #2
   /*
 >>>>>>> Delete merge markers
   'get_one': function (req, res) {
@@ -192,5 +227,8 @@ module.exports = {
   }
 =======
   } */
+<<<<<<< HEAD
 >>>>>>> Delete merge markers
 }
+=======
+>>>>>>> several function in api/leasing #2
