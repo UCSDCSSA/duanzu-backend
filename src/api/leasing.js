@@ -5,17 +5,25 @@ const ObjectId = require('mongodb').ObjectId
 const Leasing = Mongo.db.collection('leasing')
 
 module.exports = {
-    "insert": function(
-        user_id, complex_id, apt_bedroom_amount, apt_bathroom_amount, callback, error
-    ) {
-
-        // TODO: WUT DA FUC IS THIS!!!!
-        // ?????
-        if(Leasing.findOne({
-            // find if exist
-        }))
-        else if(apt_bedroom_amount < 0 || apt_bathroom_amount < 0) {
-            error(new Error("room amount invalid");
+  'insert': function (
+    userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
+  ) {
+    // TODO: WUT DA FUC IS THIS!!!!
+    if (Leasing.findOne({ 'user_id': userId, 'complex_id': complexId }, function () {})) {
+      // If find
+    } else if (aptBedroomAmount < 0 || aptBathroomAmount < 0) {
+      error(new Error('room amount invalid'))
+    } else {
+      Leasing.insertOne({
+        'user_id': userId,
+        'complex_id': complexId,
+        'apt_bedroom_amount': aptBedroomAmount,
+        'apt_bathroom_amount': aptBathroomAmount
+      }, function (err, res) {
+        if (err) {
+          error(new Error('Error adding new house ' + userId + ': ' + err))
+        } else {
+          callback(res['insertedId'])
         }
       })
     }
