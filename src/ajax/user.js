@@ -26,7 +26,7 @@ module.exports = {
    */
   'login': function (req, res) {
     const { email, password } = req.body
-    if (email && password) {
+    if (!email || !password) {
       res.error(1, 'Missing email or password')
     } else if (!isValidEmail(email) || !isValidPassword(password)) {
       res.error(10, 'Invalid email or passowrd')
@@ -51,8 +51,43 @@ module.exports = {
         res.error(2, 'Cannot find user')
       })
     }
+  },
+  'change_password': function (req, res) {
+    const { username } = res.body
+    var currentPassword = req.body['password']
+    var newPassword = req.body['new_password']
+    var confirmPassword = req.body['confirm_password']
+    if (!currentPassword) {
+      res.error(3, 'No current password')
+    } else if (!newPassword) {
+      res.error(4, 'No new password')
+    } else if (!confirmPassword) {
+      res.error(7, 'No confirm password')
+    } else if (newPassword !== confirmPassword) {
+      res.error(8, 'confirm password is not same as new password')
+    } else if (!isValidPassword(newPassword)) {
+      res.error(2, 'Invalid password')
+    } else {
+      UserAPI.getByUserName(username, (user) => {
+        if (!Crypto.match(currentPassword, user.password)) {
+          res.error(6, 'Password not match')
+        } else if (!isValidPassword(newPassword)) {
+          res.error(9, 'Minimum eight characters, at least one letter and one number')
+        } else {
+          var hashNewPassword = Crypto.genEncrypted(newPassword)
+          UserAPI.updatePassword(user['_id'], hashNewPassword, () => {
+            res.success()
+          }, (err) => {
+            Debug.error(err)
+            res.error(7, err)
+          })
+        }
+      }, (err) => {
+        Debug.error(err)
+        res.error(7, err)
+      })
+    }
   }
-
   // 'change_password': function (req, res) {
   //   var currentPassword = req.body['password']
   //   var newPassword = req.body['new_password']

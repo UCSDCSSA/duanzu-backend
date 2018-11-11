@@ -36,6 +36,22 @@ module.exports = {
     })
   },
 
+  getByUserName (username, callback, error) {
+    User.findOne({
+      'username': username
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        if (result.length === 0) {
+          error(new Error(`No user with username ${username}`))
+        } else {
+          callback(result[0])
+        }
+      }
+    })
+  },
+
   updateSessionId (userId, callback, error) {
     const sessionId = ObjectId()
     User.updateOne({
@@ -53,6 +69,22 @@ module.exports = {
         } else {
           callback(sessionId)
         }
+      }
+    })
+  },
+
+  updatePassword (userId, hashNewPassword, callback, error) {
+    User.updateOne({
+      '_id': userId
+    }, {
+      $set: {
+        'password': hashNewPassword
+      }
+    }, (err, result) => {
+      if (err) {
+        error(new Error('No password changed'))
+      } else {
+        callback(result)
       }
     })
   }
