@@ -36,6 +36,30 @@ module.exports = {
     })
   },
 
+  checkUserNameExist (username, callback, error) {
+    User.findOne({
+      'username': username
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        callback(result.length)
+      }
+    })
+  },
+
+  checkEmailExist (email, callback, error) {
+    User.findOne({
+      'email': email
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        callback(result.length)
+      }
+    })
+  },
+
   getByUserName (username, callback, error) {
     User.findOne({
       'username': username
@@ -85,6 +109,35 @@ module.exports = {
         error(new Error('No password changed'))
       } else {
         callback(result)
+      }
+    })
+  },
+
+  createUser (username, email, hashNewPassword, callback, error) {
+    User.insertOne({
+      'username': username,
+      'email': email,
+      'password': hashNewPassword
+    }, function (err, result) {
+      if (err) {
+        error(new Error('No user has been created'))
+      } else {
+        callback(result.ops[0])
+      }
+    })
+  },
+  getUserBySessionId (sessionId, callback, error) {
+    User.findOne({
+      'session_id': sessionId
+    }).toArray(function (err, result) {
+      if (err) {
+        error(err)
+      } else {
+        if (result.length === 0) {
+          error(new Error(`No user with sessionId ${sessionId}`))
+        } else {
+          callback(result[0])
+        }
       }
     })
   }
