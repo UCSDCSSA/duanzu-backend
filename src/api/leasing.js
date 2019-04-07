@@ -1,75 +1,6 @@
 // TODO: Turn APIs into NO RES REQ function calls!
 
 const Mongo = require('keeling-js/lib/mongo')
-<<<<<<< HEAD
-const ObjectId = require('./objectId')
-const Leasing = Mongo.db.collection('leasing')
-
-module.exports = {
-  insert (userId, callback, error) {
-    Leasing.insertOne({
-      'user_id': ObjectId(userId),
-      'status': 0
-    }, function (err, result) {
-      if (err) {
-        error(new Error('Error adding new house ' + userId + ': ' + err))
-      } else {
-        callback(result['insertedId'])
-      }
-    })
-  },
-
-  findByCriteria (criteria, callback, error) {
-    Leasing.find({
-      ...criteria,
-      'status': 1
-    }).toArray(function (err, result) {
-      if (err) {
-        error(err)
-      } else {
-        callback(result)
-      }
-    })
-  },
-
-  getLeasing (leasingId, callback, error) {
-    Leasing.findOne({
-      '_id': ObjectId(leasingId)
-    }).toArray(function (err, result) {
-      if (err) {
-        error(err)
-      } else {
-        callback(result[0])
-      }
-    })
-  },
-
-  updateOne (leasingId, criteria, callback, error) {
-    Leasing.updateOne({
-      '_id': ObjectId(leasingId)
-    }, criteria, (err, result) => {
-      if (err) {
-
-      } else {
-
-      }
-    })
-  },
-
-  setavailable () {
-
-  },
-
-  setUnavailable () {
-
-  }
-}
-/**
-     * req.body.username,
-     * req.body.password
-     */
-/*
-=======
 const ObjectId = require('mongodb').ObjectId
 const Leasing = Mongo.db.collection('leasing')
 
@@ -103,7 +34,6 @@ module.exports = {
      * req.body.password
      */
   /*
->>>>>>> b42562a3c439ccb2e2f98aaa7830ea201db6f4c8
     "add_one": function (req, res) {
         var userId = req.body.userId;
         var start_date = req.body.start_date;
