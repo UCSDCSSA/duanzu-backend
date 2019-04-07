@@ -129,7 +129,7 @@ module.exports = {
   getUserBySessionId (sessionId, callback, error) {
     User.findOne({
       'session_id': sessionId
-    }).toArray(function (err, result) {
+    }, function (err, result) {
       if (err) {
         error(err)
       } else {
