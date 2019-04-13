@@ -9,12 +9,14 @@ module.exports = {
       '_id': userId
     }).toArray(function (err, result) {
       if (err) {
-        error(err)
+        error(err.code, { msg: err.errmsg })
       } else {
         if (result.length === 0) {
-          error(new Error(`No user with id ${userId}`))
+          error(1, { msg: `` })
         } else {
-          callback(result[0])
+          const user = result[0]
+          const { username, email, real_name } = user
+          callback({ username, email, real_name })
         }
       }
     })

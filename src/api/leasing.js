@@ -10,9 +10,13 @@ module.exports = {
       if (err) {
         error(err)
       }
-      callback(result)
+      const leasing = result[0]
+      const { notice, user_id, _id } = leasing
+      callback([{ notice, user_id, _id }])
     })
   }
+
+
   // 'insert': function (
   //   userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error
   // ) {
