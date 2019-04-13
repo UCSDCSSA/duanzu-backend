@@ -17,6 +17,18 @@ All collection name, fields name follows naming format:
 }
 ```
 
+#### Error code
+``` json
+{
+    "0": "success",
+    "1": "user not found",
+    "2": "user not authorized",
+    "3": "input invalid format",
+    "4": "update password error",
+    "5": "create user error"
+}
+```
+
 ## Leasing
 ``` json
 {

@@ -13,7 +13,6 @@ function isValidEmail (email) {
 }
 
 module.exports = {
-
   /**
    * ajax/user?action=login
    * body:
@@ -31,29 +30,20 @@ module.exports = {
     } else if (!isValidEmail(email) || !isValidPassword(password)) {
       res.error(10, 'Invalid email or passowrd')
     } else {
-      UserAPI.getByEmail(email, (user) => {
+      UserAPI.getByEmail(email, (err) => {
+        Debug.error(err)
+        res.error(2, 'Cannot find user')
+      }, (user) => {
         if (Crypto.match(password, user.password)) {
-          UserAPI.updateSessionId(user['_id'], (sessionId) => {
-            res.cookie('session_id', sessionId, {
-              expires: new Date(Date.now() + 900000),
-              httpOnly: true
-            })
-            res.success()
-          }, (err) => {
-            Debug.error(err)
-            res.error(4, 'Unknown error')
-          })
+          res.success(user)
         } else {
           res.error(3, 'Incorrect password')
         }
-      }, (err) => {
-        Debug.error(err)
-        res.error(2, 'Cannot find user')
       })
     }
   },
   'change_password': function (req, res) {
-    const { username } = res.body
+    var username = req.body['username']
     var currentPassword = req.body['password']
     var newPassword = req.body['new_password']
     var confirmPassword = req.body['confirm_password']
@@ -76,7 +66,7 @@ module.exports = {
         } else {
           var hashNewPassword = Crypto.genEncrypted(newPassword)
           UserAPI.updatePassword(user['_id'], hashNewPassword, () => {
-            res.success()
+            res.success(user)
           }, (err) => {
             Debug.error(err)
             res.error(7, err)
@@ -89,7 +79,10 @@ module.exports = {
     }
   },
   'register': function (req, res) {
-    const { username, email, password } = res.body
+    var username = req.body['username']
+    var email = req.body['email']
+    var password = req.body['password']
+    var confirmPassword = req.body['confirm_password']
     if (!username) {
       res.error(2, 'No username')
     } else if (!email) {
@@ -100,26 +93,19 @@ module.exports = {
       res.error(5, 'email invalid')
     } else if (!isValidPassword(password)) {
       res.error(6, 'Minimum eight characters, at least one letter and one number')
+    } else if (password !== confirmPassword) {
+      res.error(7, 'password does not match')
     } else {
-      UserAPI.checkUserNameExist(username, (userLength) => {
-        if (userLength !== 0) {
+      UserAPI.checkUserNameExist(username, (usernameNum) => {
+        if (usernameNum !== 0) {
           res.error(7, 'Username has been used')
         } else {
-          UserAPI.checkEmailExist(email, (emailLength) => {
-            if (emailLength !== 0) {
+          UserAPI.checkEmailExist(email, (emailNum) => {
+            if (emailNum !== 0) {
               res.error(8, 'Email has been used')
             } else {
               UserAPI.createUser(username, email, Crypto.genEncrypted(password), (user) => {
-                UserAPI.updateSessionId(user['_id'], (sessionId) => {
-                  res.cookie('session_id', sessionId, {
-                    expires: new Date(Date.now() + 900000),
-                    httpOnly: true
-                  })
-                  res.success()
-                }, (err) => {
-                  Debug.error(err)
-                  res.error(4, 'Unknown error')
-                })
+                res.success(user)
               }, (err) => {
                 Debug.error(err)
               })
