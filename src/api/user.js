@@ -7,22 +7,6 @@ function isValidEmail (email) {
   return re.test(String(email).toLowerCase())
 }
 
-<<<<<<< HEAD
-  get (userId, callback, error) {
-    User.findOne({
-      '_id': userId
-    }).toArray(function (err, result) {
-      if (err) {
-        error(err.code, { msg: err.errmsg })
-      } else {
-        if (result.length === 0) {
-          error(1, { msg: `` })
-        } else {
-          const user = result[0]
-          const { username, email, real_name } = user
-          callback({ username, email, real_name })
-        }
-=======
 function getUserBySessionId (sessionId, callback, error) {
   User.find({
     'session_id': sessionId
@@ -34,7 +18,6 @@ function getUserBySessionId (sessionId, callback, error) {
         error(1, { msg: `No user with sessionId ${sessionId}` })
       } else {
         callback(result)
->>>>>>> 5d696d680db6a87323fada24a82e7d537f5c8429
       }
     }
   })
