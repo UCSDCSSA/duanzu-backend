@@ -192,4 +192,48 @@
         "www.charlesroom.com/bedroom",
         "www.charlesroom.com/livingroom"
     ]
-}]
+},{
+    "user_id": "Dian Qi",
+    "start_date": "2019-05-14",
+    "end_date": "2019-09-01",
+    "complex_id": "5c4b9aadfbe228dca44f5855",
+    "apt_bedroom_amount": 2,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price":1750
+        }, {
+            "type": "bedroom",
+            "price": 2250
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "阿里嘎都麻麻哈哈",
+    "facility":{
+        "wifi":true,
+        "pet":false,
+        "washer":true,
+        "furniture":true,
+        "printer":true,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "干得漂亮",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "www.charlesroom.com/bedroom",
+        "www.charlesroom.com/livingroom"
+    ]
+}
+
+
+
+
+]

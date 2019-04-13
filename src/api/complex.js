@@ -2,15 +2,16 @@
 
 const Mongo = require('keeling-js/lib/mongo')
 const ObjectId = require('mongodb').ObjectId
-const Leasing = Mongo.db.collection('leasing')
+const Complex = Mongo.db.collection('complex')
 
 module.exports = {
-  fetchAll (callback, error) {
-    Leasing.find({}).toArray((err, result) => {
+  get (complexId, callback, error) {
+    console.log(complexId)
+    Complex.find({ '_id': ObjectId(complexId) }).toArray((err, result) => {
       if (err) {
         error(err)
       }
-      callback(result)
+      callback(result[0])
       // const leasing = result[0]
       // const { notice, user_id, _id } = leasing
       // callback([{ notice, user_id, _id }])
