@@ -17,7 +17,7 @@ function getUserBySessionId (sessionId, callback, error) {
       if (result.length === 0) {
         error(1, { msg: `No user with sessionId ${sessionId}` })
       } else {
-        callback(result)
+        callback(result[0])
       }
     }
   })
@@ -58,7 +58,7 @@ function getByEmail (email, sessionId, callback, error) {
         if (result.length === 0) {
           error(1, { msg: `No user with email ${email}` })
         } else {
-          callback(getVisible(result))
+          callback(getVisible(result[0]))
         }
       }
     })
@@ -75,7 +75,7 @@ function getByUserName (username, callback, error) {
       if (result.length === 0) {
         error(1, { msg: `No user with username ${username}` })
       } else {
-        callback(getVisible(result))
+        callback(getVisible(result[0]))
       }
     }
   })
