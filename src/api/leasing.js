@@ -1,7 +1,7 @@
 // TODO: Turn APIs into NO RES REQ function calls!
 
 const Mongo = require('keeling-js/lib/mongo')
-const ObjectId = require('mongodb').ObjectId
+// const ObjectId = require('mongodb').ObjectId
 const Leasing = Mongo.db.collection('leasing')
 
 module.exports = {
@@ -15,8 +15,26 @@ module.exports = {
       // const { notice, user_id, _id } = leasing
       // callback([{ notice, user_id, _id }])
     })
+  },
+  insert (data, callback, error) {
+    if (data.apt_bedroom_amoun &&
+        data.apt_bathroom_amount &&
+        data.gender_req &&
+        data.start_date &&
+        data.end_date &&
+        data.user_id &&
+        data.room_avail) {
+      Leasing.insertOne(data, function (err, result) {
+        if (err) {
+          error(5, { msg: 'No leasing has been created' })
+        } else {
+          callback(result.ops[0])
+        }
+      })
+    } else {
+      error(6, 'Missing fields')
+    }
   }
-
 
   // 'insert': function (
   //   userId, complexId, aptBedroomAmount, aptBathroomAmount, callback, error

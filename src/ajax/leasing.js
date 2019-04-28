@@ -1,5 +1,6 @@
 const LeasingAPI = require('../api/leasing')
-const UserAPI = require('../api/user')
+// const UserAPI = require('../api/user')
+const Debug = require('keeling-js/lib/debug')
 
 module.exports = {
   'fetchall': (req, res, next) => {
@@ -8,20 +9,27 @@ module.exports = {
     }, (error) => {
       res.send(error)
     })
+  },
+  'insert': (req, res) => {
+    const data = req.body
+    if (data.apt_bedroom_amoun &&
+        data.apt_bathroom_amount &&
+        data.gender_req &&
+        data.start_date &&
+        data.end_date &&
+        data.user_id &&
+        data.room_avail) {
+      LeasingAPI.insert(data,
+        (data) => {
+          res.success(data)
+        },
+        (err) => {
+          Debug.error(err)
+        })
+    } else {
+      Debug.error('Missing fields')
+    }
   }
-  // 'insert': (req, res) => {
-  //   UserAPI.getUserBySessionId(req.cookies.session_id, (user) => {
-  //     LeasingAPI.insert(user._id, (leasingId) => {
-  //       res.success(leasingId)
-  //     }, (err) => {
-  //       console.error(err)
-  //       res.error(1, 'insert error')
-  //     })
-  //   }, (err) => {
-  //     console.error(err)
-  //     res.error(2, 'get user error')
-  //   })
-  // },
   /**
    * ajax/leasing?action=fetchall
    * body:
