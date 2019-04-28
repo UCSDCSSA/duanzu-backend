@@ -17,13 +17,13 @@ module.exports = {
     })
   },
   insert (data, callback, error) {
-    if (data.apt_bedroom_amoun &&
-        data.apt_bathroom_amount &&
-        data.gender_req &&
-        data.start_date &&
-        data.end_date &&
-        data.user_id &&
-        data.room_avail) {
+    // if (data.apt_bedroom_amoun &&
+    //     data.apt_bathroom_amount &&
+    //     data.gender_req &&
+    //     data.start_date &&
+    //     data.end_date &&
+    //     data.user_id &&
+    //     data.room_avail) {
       Leasing.insertOne(data, function (err, result) {
         if (err) {
           error(5, { msg: 'No leasing has been created' })
@@ -31,9 +31,9 @@ module.exports = {
           callback(result.ops[0])
         }
       })
-    } else {
-      error(6, 'Missing fields')
-    }
+    // } else {
+    //   error(6, 'Missing fields')
+    // }
   }
 
   // 'insert': function (

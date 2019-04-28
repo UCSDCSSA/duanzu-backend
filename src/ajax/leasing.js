@@ -11,14 +11,49 @@ module.exports = {
     })
   },
   'insert': (req, res) => {
-    const data = req.body
-    if (data.apt_bedroom_amoun &&
-        data.apt_bathroom_amount &&
-        data.gender_req &&
-        data.start_date &&
-        data.end_date &&
-        data.user_id &&
-        data.room_avail) {
+    var data = req.body
+
+    const {
+      apt_bedroom_amount = 1,
+      apt_bathroom_amount = 1,
+      gender_req = 1,
+      start_date = 1,
+      end_date = 1,
+      user_id = 1,
+      room_avail = [{ price: 111 }, { price: 111 }],
+      user_description = 1,
+      facility = 1,
+      notice = 1,
+      location = 1,
+      status = 1,
+      img_url = 1,
+      complex_id = 1
+    } = data
+
+    data = {
+      ...data,
+      apt_bedroom_amount,
+      apt_bathroom_amount,
+      gender_req,
+      start_date,
+      end_date,
+      user_id,
+      room_avail,
+      user_description,
+      facility,
+      notice,
+      location,
+      status,
+      img_url,
+      complex_id
+    }
+    // if (data.apt_bedroom_amoun &&
+    //     data.apt_bathroom_amount &&
+    //     data.gender_req &&
+    //     data.start_date &&
+    //     data.end_date &&
+    //     data.user_id &&
+    //     data.room_avail) {
       LeasingAPI.insert(data,
         (data) => {
           res.success(data)
@@ -26,9 +61,9 @@ module.exports = {
         (err) => {
           Debug.error(err)
         })
-    } else {
-      Debug.error('Missing fields')
-    }
+    // } else {
+    //   Debug.error('Missing fields')
+    // }
   }
   /**
    * ajax/leasing?action=fetchall
