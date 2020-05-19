@@ -1,0 +1,239 @@
+[{
+    "user_id": "CSE30",
+    "start_date": "2019-01-31",
+    "end_date": "2019-02-28",
+    "complex_id": "5c4b9c9cfbe228dca44f5856",
+    "apt_bedroom_amount": 3,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price": 1350
+        }, {
+            "type": "bedroom",
+            "price": 2000
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "I love CrazyOrbs!",
+    "facility":{
+        "wifi":true,
+        "pet":true,
+        "washer":true,
+        "furniture":false,
+        "printer":false,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "Where are my Math-CS majors?",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "cse30.ucsd.edu",
+        "cse11.ucsd.edu"
+    ]
+},{
+    "user_id": "CSE21",
+    "start_date": "2019-01-31",
+    "end_date": "2019-02-28",
+    "complex_id": "5c4b9c9cfbe228dca44f5856",
+    "apt_bedroom_amount": 2,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price": 350
+        }, {
+            "type": "bedroom",
+            "price": 400
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "MJMJMJMJ",
+    "facility":{
+        "wifi":true,
+        "pet":true,
+        "washer":true,
+        "furniture":false,
+        "printer":false,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "I used the large living room to tutor my students",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "cse21.ucsd.edu",
+        "cse101.ucsd.edu",
+        "cse105.ucsd.edu"
+    ]
+},{
+    "user_id": "Mamahaha",
+    "start_date": "2019-03-31",
+    "end_date": "2019-04-30",
+    "complex_id": "5c4b9c9cfbe228dca44f5856",
+    "apt_bedroom_amount": 3,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price": 900
+        }, {
+            "type": "bedroom",
+            "price": 1400
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "great room for playing video game",
+    "facility":{
+        "wifi":true,
+        "pet":false,
+        "washer":true,
+        "furniture":true,
+        "printer":true,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "If you want to study, then I won't rent you the room",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "games.qq.com"
+    ]
+},{
+    "user_id": "Gina",
+    "start_date": "2019-02-14",
+    "end_date": "2019-02-19",
+    "complex_id": "5c4b9c9cfbe228dca44f5856",
+    "apt_bedroom_amount": 3,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price": 1
+        }, {
+            "type": "bedroom",
+            "price": 1
+        }
+    ],
+    "gender_req": 0,
+    "user_description": "Free to come and spend the Valentine's day with me :(",
+    "facility":{
+        "wifi":true,
+        "pet":false,
+        "washer":true,
+        "furniture":true,
+        "printer":true,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "怎么了小老弟",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "singleforever.ucsd.edu"
+    ]
+},{
+    "user_id": "Charles",
+    "start_date": "2019-05-14",
+    "end_date": "2019-06-13",
+    "complex_id": "5c4b9c9cfbe228dca44f5856",
+    "apt_bedroom_amount": 3,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price":750
+        }, {
+            "type": "bedroom",
+            "price": 1200
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "我要去环游世界了，嘤嘤嘤",
+    "facility":{
+        "wifi":true,
+        "pet":false,
+        "washer":true,
+        "furniture":true,
+        "printer":true,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "你要敢把我家具弄坏看我不****",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "www.charlesroom.com/bedroom",
+        "www.charlesroom.com/livingroom"
+    ]
+},{
+    "user_id": "Dian Qi",
+    "start_date": "2019-05-14",
+    "end_date": "2019-09-01",
+    "complex_id": "5c4b9aadfbe228dca44f5855",
+    "apt_bedroom_amount": 2,
+    "apt_bathroom_amount": 2,
+    "room_avail":[
+        {
+            "type": "living",
+            "price":1750
+        }, {
+            "type": "bedroom",
+            "price": 2250
+        }
+    ],
+    "gender_req": 2,
+    "user_description": "阿里嘎都麻麻哈哈",
+    "facility":{
+        "wifi":true,
+        "pet":false,
+        "washer":true,
+        "furniture":true,
+        "printer":true,
+        "ac":false,
+        "heater":true,
+        "parking":true,
+        "kitchen":true
+    },
+    "notice": "干得漂亮",
+    "location":{
+        "lng": "32.870180",
+        "lat": "-117.216793"
+    },
+    "status": 0,
+    "img_url": [
+        "www.charlesroom.com/bedroom",
+        "www.charlesroom.com/livingroom"
+    ]
+}
+
+
+
+
+]
